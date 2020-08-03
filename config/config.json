@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "soloreact_user",
+    "password": "password",
+    "database": "soloreact",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "soloreact_user",
+    "password": "password",
+    "database": "soloreact",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "soloreact_user",
+    "password": "password",
+    "database": "soloreact",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
