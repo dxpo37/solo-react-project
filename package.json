@@ -3,20 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "web.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
-  },
-  "engines": {
-    "node": "12.x"
-  },
+  "scripts": { "dev": "nodemon app.js" },
+  "engines": { "node": "12.x" },
   "keywords": [],
   "author": "",
   "license": "ISC",
+
   "devDependencies": {
-    "sequelize": "^6.3.4",
-    "sequelize-cli": "^6.2.0"
+    "nodemon": "^2.0.4"
   },
+
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
@@ -24,7 +20,6 @@
     "express-graphql": "^0.11.0",
     "faker": "^4.1.0",
     "graphql": "^15.3.0",
-    "nodemon": "^2.0.4",
     "pg": "^8.3.0",
     "pg-promise": "^10.5.8",
     "pokedex": "^1.1.0",

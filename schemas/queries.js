@@ -22,14 +22,12 @@ const RootQuery = new GraphQLObjectType({
         id: {type: GraphQLInt }
       
       },
-      resolve(parentValue, args) {
+      resolve: async (parentValue, args) => {
         const query = `SELECT * FROM "Users" WHERE id=$1`;
         const values = [args.id];
 
-        return db
-          .one(query, values)
-          .then(res => res)
-          .catch(err => err);
+        return await db.one(query, values)
+
       }
     }
   }
