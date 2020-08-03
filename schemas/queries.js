@@ -1,4 +1,5 @@
-const { db } = require("../pgAdaptor");
+// const { db } = require("../pgAdaptor");
+const db = require("../db/models/index")
 const {
   GraphQLSchema,
   GraphQLObjectType,
@@ -23,10 +24,11 @@ const RootQuery = new GraphQLObjectType({
       
       },
       resolve: async (parentValue, args) => {
-        const query = `SELECT * FROM "Users" WHERE id=$1`;
-        const values = [args.id];
+        // const query = `SELECT * FROM "Users" WHERE id=$1`;
+        // const values = [args.id];
 
-        return await db.one(query, values)
+        return await User.findByPk(args.id, { attributes: ['id', 'firstName', 'lastName', 'userName', 'email', 'bio', 'profilePicPath', 'age', 'gender'] });
+        // return await db.one(query, values)
 
       }
     }
