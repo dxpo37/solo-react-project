@@ -7,10 +7,10 @@ module.exports = {
     database: process.env.DB_DATABASE,
     host: process.env.DB_HOST,
   },
-  // jwtConfig: {
-  //   secret: process.env.JWT_SECRET,
-  //   expiresIn: process.env.JWT_EXPIRES_IN,
-  // },
+  jwtConfig: {
+    secret: process.env.JWT_SECRET,
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  },
   // awsConfig: {
   //   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   //   accessKeyId: process.env.AWS_ACCESS_KEY_ID,

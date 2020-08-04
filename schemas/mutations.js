@@ -1,34 +1,35 @@
-const graphql = require("graphql");
-const db = require("../pgAdaptor").db;
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLBoolean } = graphql;
-const { UserType } = require("./types");
+const graphql = require("graphql")
+const db = require("../db/models")
+const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLBoolean } = graphql
+const { UserType } = require("./types")
 
 const RootMutation = new GraphQLObjectType({
   name: "RootMutationType",
   type: "Mutation",
   fields: {
-    addProject: {
+       
+    addUser: {
       type: UserType,
       args: {
-        id: { type: GraphQLID },
-        userName: { type: GraphQLString },
-        email: { type: GraphQLString }
+        id:             { type: GraphQLID },
+        userName:       { type: GraphQLString },
+        email:          { type: GraphQLString },
+        firstName:      { type: GraphQLString },
+        lastName:       { type: GraphQLString },
+        hashedPassword: { type:GraphQLString  }
       },
-      resolve(parentValue, args) {
-        const query = `INSERT INTO users("id", "userName", email) VALUES ($1, $2, $3) RETURNING id`;
-        const values = [
-          args.id,
-          args.userName,
-          args.email
-        ];
 
-        return db
-          .one(query, values)
-          .then(res => res)
-          .catch(err => err);
-      }
+      resolve: async (args) => {
+        return await db.User.create({
+          userName : args.userName,
+          email : args.email,
+          firstName : args.firstName,
+          lastName : args.lastName,
+          hashedPassword: args.hashedPassword,
+      })
     }
   }
-});
+}
+})
 
-exports.mutation = RootMutation;
+exports.mutation = RootMutation

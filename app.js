@@ -5,8 +5,10 @@ const { graphqlHTTP } = require('express-graphql');
 const { GraphQLSchema } = graphql;
 const { query } = require("./schemas/queries");
 const { mutation } = require("./schemas/mutations");
-const { environment } = require("./config");
+
 const app = express();
+const cors = require('cors')
+app.use(cors({origin:true}))
 
 const schema = new GraphQLSchema({
   query,
@@ -21,6 +23,5 @@ app.use(
     graphiql: true,
   }),
 );
-
 
 module.exports = app
