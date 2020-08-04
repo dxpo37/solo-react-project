@@ -3,16 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "web.js",
-  "scripts": { "dev": "nodemon app.js" },
-  "engines": { "node": "12.x" },
+  "scripts": {
+    "start": "per-env",
+    "start:development": "nodemon -r dotenv/config ./bin/www",
+    "start:production": "node ./bin/www"
+  },
+  "engines": {
+    "node": "12.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-
   "devDependencies": {
     "nodemon": "^2.0.4"
   },
-
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
@@ -20,6 +24,7 @@
     "express-graphql": "^0.11.0",
     "faker": "^4.1.0",
     "graphql": "^15.3.0",
+    "per-env": "^1.0.2",
     "pg": "^8.3.0",
     "pg-promise": "^10.5.8",
     "pokedex": "^1.1.0",

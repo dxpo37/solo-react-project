@@ -1,16 +1,16 @@
-require('dotenv').config()
-const pgPromise = require('pg-promise');
+// require('dotenv').config()
+// const pgPromise = require('pg-promise');
 
-const pgp = pgPromise({}); // Empty object means no additional config required
+// const pgp = pgPromise({}); // Empty object means no additional config required
 
-// const config = {
-//     host: process.env.POSTGRES_HOST,
-//     port: process.env.POSTGRES_PORT,
-//     database: process.env.POSTGRES_DB,
-//     user: process.env.POSTGRES_USER,
-//     password: process.env.POSTGRES_PASSWORD
-// };
+// // const config = {
+// //     host: process.env.POSTGRES_HOST,
+// //     port: process.env.POSTGRES_PORT,
+// //     database: process.env.POSTGRES_DB,
+// //     user: process.env.POSTGRES_USER,
+// //     password: process.env.POSTGRES_PASSWORD
+// // };
 
-const db = pgp(process.env.DATABASE_URL);
+// const db = pgp(process.env.DATABASE_URL);
 
-exports.db = db;
+// exports.db = db;

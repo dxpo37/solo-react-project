@@ -1,5 +1,5 @@
 // const { db } = require("../pgAdaptor");
-const db = require("../db/models/index")
+const db = require("../db/models")
 const {
   GraphQLSchema,
   GraphQLObjectType,
@@ -8,30 +8,29 @@ const {
   GraphQLInt,
   GraphQLNonNull
 } = require('graphql')
-const { UserType} = require("./types");
+const { UserType, PostType} = require("./types");
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
   type: "Query",
   fields: {
-
-    
+   
     user: {
       type: UserType,
-      args: { 
+      args: { id: {type: GraphQLInt }},
+      resolve:  async (parentValue, args) => {
+        return await db.User.findByPk(args.id, { attributes: ['id', 'firstName', 'lastName', 'userName', 'email', 'bio', 'profilePicPath', 'age', 'gender'] })
+      }
+    },
 
-        id: {type: GraphQLInt }
-      
-      },
-      resolve: async (parentValue, args) => {
-        // const query = `SELECT * FROM "Users" WHERE id=$1`;
-        // const values = [args.id];
-
-        return await User.findByPk(args.id, { attributes: ['id', 'firstName', 'lastName', 'userName', 'email', 'bio', 'profilePicPath', 'age', 'gender'] });
-        // return await db.one(query, values)
-
+    post: {
+      type: PostType,
+      args: { id: {type: GraphQLInt }},
+      resolve:  async (parentValue, args) => {
+        return await db.Post.findByPk(args.id, { attributes: ['id', 'userId','caption', 'photoPath'] })
       }
     }
+    
   }
 });
 
