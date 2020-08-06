@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.4.0",
+    "dotenv": "^8.2.0",
     "graphql": "^15.3.0",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
