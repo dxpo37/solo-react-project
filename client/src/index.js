@@ -16,7 +16,7 @@ import { setContext } from '@apollo/client/link/context';
 const store = createStore(allReducers, composeWithDevTools())
 
 let url
-process.env.NODE_ENV==="development"? url="http://localhost:6777" : url="https://solo-react-project.herokuapp.com/"
+process.env.NODE_ENV==="development"? url="http://localhost:6777" : url="https://solo-react-project.herokuapp.com/gql"
 
 const httpLink = createHttpLink({
   uri: url,

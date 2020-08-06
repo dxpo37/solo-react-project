@@ -25,10 +25,8 @@ io.on('connection', socket => {
   })
 })
 
-
-
 const schema = new GraphQLSchema({ query, mutation })
-app.use( '/', graphqlHTTP({ schema: schema, graphiql: true }) )
+app.use( '/gql', graphqlHTTP({ schema: schema, graphiql: true }) )
 
 // Check the database connection before starting the app.
 db.sequelize.authenticate()
