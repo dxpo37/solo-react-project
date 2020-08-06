@@ -12,12 +12,15 @@ module.exports = {
     database,
     host,
     dialect: 'postgres',
+    logging: false
   },
   production: {
     use_env_variable: 'DATABASE_URL',
+    logging: false
   },
   test: {
     url: process.env.TEST_DATABASE_URL,
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false
   }
 };

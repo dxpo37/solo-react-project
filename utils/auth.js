@@ -21,6 +21,7 @@ const getUserToken = (user) => {
 };
 
 const restoreUser = (req, res, next) => {
+ 
   const { token } = req;
 
   if (!token) {
@@ -38,7 +39,7 @@ const restoreUser = (req, res, next) => {
     try {
       req.user = await User.findByPk(id);
     } catch (e) {
-      return next(e);
+      return next(e)
     }
 
     if (!req.user) {

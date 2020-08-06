@@ -1,10 +1,5 @@
-const graphql = require("graphql");
-const db = require("../db/models")
-const { 
-  GraphQLObjectType, 
-  GraphQLString,  
-  GraphQLNonNull, 
-  GraphQLInt } = graphql;
+const { GraphQLObject,  GraphQLObjectType,  GraphQLString, GraphQLNonNull,   GraphQLInt } =  require("graphql")
+const {getUser} = require("../utils/utils")
 
 const LoginType = new GraphQLObjectType(
   {
@@ -13,7 +8,6 @@ const LoginType = new GraphQLObjectType(
     fields: {
       id: {type: GraphQLInt},
       token: { type: GraphQLString },
-
     }
   })
 
@@ -31,23 +25,28 @@ const UserType = new GraphQLObjectType(
     }
   })
 
-const PostType = new GraphQLObjectType(
+const PostType = new GraphQLObjectType (
   {
     name: "Post",
     type: "Query",
     fields: {
-      id:             { type: GraphQLNonNull(GraphQLInt) },
-      caption:        { type: GraphQLString },
-      photoPath:      { type: GraphQLString },
-      userId: { 
-        type: UserType,
-        resolve: async (user) => {
-          return db.User.findByPk(user.id, { attributes: ['id', 'firstName', 'lastName', 'userName', 'email', 'bio', 'profilePicPath', 'age', 'gender'] })
-        }
-      },
+      allPosts: { type: GraphQLString },
     }
   })
 
-exports.UserType = UserType;
-exports.PostType = PostType;
-exports.LoginType = LoginType;
+const CommentType = new GraphQLObjectType (
+  {
+    name: "Comment",
+    type: "Query",
+    fields: {
+      id:             { type: GraphQLNonNull(GraphQLInt) },
+      postId  :       { type: GraphQLInt },
+      comment:        { type: GraphQLString },
+      userId  :       { type: GraphQLInt },
+    }
+  })
+
+exports.UserType = UserType
+exports.PostType = PostType
+exports.LoginType = LoginType
+exports.CommentType = CommentType

@@ -1,16 +1,6 @@
-// const { db } = require("../pgAdaptor");
-const db = require("../db/models")
-const { getUserToken, requireAuth } = require("../utils/auth")
-const {
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLString,
-  GraphQLList,
-  GraphQLInt,
-  GraphQLNonNull
-} = require('graphql')
+const {getPosts, getUser, getLogin} = require("../utils/utils")
 const { UserType, PostType, LoginType} = require("./types");
-const { Op } = require('sequelize')
+const {  GraphQLSchema,  GraphQLObjectType,  GraphQLString,  GraphQLList,  GraphQLInt,  GraphQLNonNull} = require('graphql')
 
 const RootQuery = new GraphQLObjectType({
   name: "RootQueryType",
@@ -23,32 +13,27 @@ const RootQuery = new GraphQLObjectType({
         userName: { type: GraphQLNonNull(GraphQLString) },
         password: { type: GraphQLNonNull(GraphQLString) },
       },
-      resolve:  async (parentValue, args) => {
-        const user = await db.User.findOne({where: {[Op.or]: [{ email: args.userName }, { userName: args.userName }]}})
-        if (!user || !user.validatePassword(args.password)) return new Error("incorrect")        
-        const token = getUserToken(user);
-        const id = user.id
-        return {token,id}
+      resolve:  async (parentValue, args, req) => {       
+        return await getLogin(args.userName,args.password) 
       }
     },
 
     user: {
       type: UserType,
-      args: { id: {type: GraphQLInt }},
-      resolve:  async (parentValue, args) => {
-        console.log(args.id)
-        return await db.User.findByPk(args.id, { attributes: ['id', 'firstName', 'lastName', 'userName', 'email', 'bio', 'profilePicPath', 'age', 'gender'] })
+      resolve:  async (parentValue, args, req) => {
+        return await getUser(req.user.dataValues.id);
       }
     },
 
     post: {
       type: PostType,
-      args: { id: {type: GraphQLInt }},
-      resolve:  async (parentValue, args) => {
-        return await db.Post.findByPk(args.id, { attributes: ['id', 'userId','caption', 'photoPath'] })
+      // args: { id: {type: GraphQLInt }},
+      resolve:  async (parentValue, args, req) => {    
+        return getPosts(req.user.dataValues.id)
       }
-    },    
+    },
+    
   }
-});
+})
 
-exports.query = RootQuery;
+exports.query = RootQuery
