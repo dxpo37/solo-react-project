@@ -4,7 +4,10 @@ import styled from 'styled-components'
 import {Button, Input as input} from 'antd'
 import {useSelector} from 'react-redux'
 // import TextField from '@material-ui/core/TextField'
-const socket = io("http://localhost:6777", {path: "/ws"})
+let url
+process.env.NODE_ENV==="development" ? url="http://localhost:6777" : url="https://solo-react-project.herokuapp.com/"
+
+const socket = io(url, {path: "/ws"})
 
 const Position = styled.div`
   position: fixed;
