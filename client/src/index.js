@@ -10,7 +10,7 @@ import allReducers from "./Reducers/allReducers"
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {Provider} from "react-redux"
 
-import { createHttpLink, ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { createHttpLink,  ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 //GLOBAL STORE
 const store = createStore(allReducers, composeWithDevTools())
@@ -46,7 +46,7 @@ ReactDOM.render(
     <ApolloProvider client={client}>
       <Router>
       <Switch>
-        <Route path="/login"> <App/> </Route>
+        <Route path="/"> <App/> </Route>
         <Route path="/home"> <Home/> </Route>
       </Switch>
       </Router>
