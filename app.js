@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 let url
-process.env.NODE_ENV==="development" ? url="http://localhost:3000" : url="https://solo-react-project.herokuapp.com/"
+process.env.NODE_ENV==="development" ? url="http://localhost:3000" : url="https://solo-react-project.herokuapp.com/gql"
 
 app.use(cors({
   origin:url,

@@ -3,20 +3,20 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router,  Switch,  Route,  Link} from "react-router-dom";
 import App from './App';
 import Home from './Components/Home';
-import styled from 'styled-components'
 
 
 import {createStore} from 'redux'
 import allReducers from "./Reducers/allReducers"
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {Provider} from "react-redux"
+
 import { createHttpLink, useQuery, gql, ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 //GLOBAL STORE
 const store = createStore(allReducers, composeWithDevTools())
 
 let url
-process.env.NODE_ENV==="development"? url="http://localhost:6777" : url="https://solo-react-project.herokuapp.com/gql"
+process.env.NODE_ENV==="development"? url="http://localhost:6777/gql" : url="https://solo-react-project.herokuapp.com/gql"
 
 const httpLink = createHttpLink({
   uri: url,
