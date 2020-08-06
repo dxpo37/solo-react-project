@@ -22,9 +22,9 @@ export default function Post (props) {
         <img src={ props.value.photoPath} style={{width: "550px", padding:"1px 1px"}} />
         <p> { `${props.value.user.userName}: ${props.value.caption}`} </p>
         <p> { comments[0] ? "Comments:":null} </p>
-        <p> { comments[0] ?
-          comments.map( comments => <p> {`${ comments.User.userName }:${ comments.comment }`} </p>)                
-        : null } </p>
+        <div> { comments[0] ?
+          comments.map( (comments,i) => <p key={i}> {`${ comments.User.userName }:${ comments.comment }`} </p>)                
+        : null } </div>
         <input onChange={ e => setComment( e.target.value ) } type="text" placeholder="comment" style={{width: "400px"}}/>
         <input type="button" value="Comment" onClick={ () => {           
             addComment({ variables: {postId:props.value.id, comment:comment}})

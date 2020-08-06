@@ -28,7 +28,7 @@ export default function Home () {
       <Center>
         {
           JSON.parse(data.post.allPosts)
-            .map(ele=> <Post value={ele}/> )
+            .map((ele,i)=> <Post key={i} value={ele}/> )
         } 
       </Center>
 <ChatWindow/>
