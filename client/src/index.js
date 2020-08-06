@@ -46,8 +46,8 @@ ReactDOM.render(
     <ApolloProvider client={client}>
       <Router>
       <Switch>
-        <Route path="/"> <App/> </Route>
-        <Route path="/home"> <Home/> </Route>
+        <Route exact path="/"> <App/> </Route>
+        <Route exact path="/home"> <Home/> </Route>
       </Switch>
       </Router>
     </ApolloProvider>
