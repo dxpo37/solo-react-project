@@ -1,7 +1,10 @@
 import {  gql } from '@apollo/client';
 
 export const loginCompleted = (data) =>{
-  window.location.href = "http://localhost:3000/home"
+  let url
+process.env.NODE_ENV==="development" ? url="http://localhost:6777" : url="https://solo-react-project.herokuapp.com/"
+
+  window.location.href = url
   localStorage.token = data.login.token
 }
 
