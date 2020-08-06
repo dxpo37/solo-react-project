@@ -27,7 +27,7 @@ const MyBox = styled.div`
   overflow-y:auto;`
 
 export default function ChatWindow() {
-  const like = useSelector(state => state.likeReducer)
+  // const like = useSelector(state => state.likeReducer)
   const username = useSelector(state => state.userReducer.username)
 
   const [state, setState] = useState({ message: '', name: '' })

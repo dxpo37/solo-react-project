@@ -1,7 +1,7 @@
-import React, { Component, useRef , useState} from 'react'
+import React, { useState} from 'react'
 import {GET_TOKEN, loginCompleted} from "../utils"
 import styled from "styled-components"
-import { useLazyQuery, useQuery, gql, ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 
 const Center = styled.div`
 display: flex;
@@ -16,7 +16,7 @@ export default function Login () {
   const [password, setPassword] = useState(null)
   const [error, setError] = useState(null)
 
-  const [getToken, { loading, data }] = useLazyQuery(GET_TOKEN, {
+  const [getToken] = useLazyQuery(GET_TOKEN, {
     onCompleted: loginCompleted,
     onError: (data) => setError("Invalid Credentials")
   })

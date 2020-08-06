@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router,  Switch,  Route,  Link} from "react-router-dom";
+import { BrowserRouter as Router,  Switch,  Route} from "react-router-dom";
 import App from './App';
 import Home from './Components/Home';
 
@@ -10,7 +10,7 @@ import allReducers from "./Reducers/allReducers"
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {Provider} from "react-redux"
 
-import { createHttpLink, useQuery, gql, ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { createHttpLink, ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 //GLOBAL STORE
 const store = createStore(allReducers, composeWithDevTools())

@@ -1,5 +1,4 @@
-import React, { Component, useRef, useState } from 'react'
-import { useMutation, useLazyQuery, useQuery, gql, ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import React from 'react'
 import styled from 'styled-components'
 
 const MyDiv = styled.div`
@@ -20,9 +19,6 @@ left:9px;
 -width: 0;`
 
 export default function Nav (props) {
-
-
-
     return (  
       <MyDiv>
       <h1 style={{"paddingLeft":"100px"}}>Logo</h1> 

@@ -1,7 +1,7 @@
-import React, { Component, useRef, useState } from 'react'
-import { useMutation, useLazyQuery, useQuery, gql, ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import React, {  useState } from 'react'
+import { useMutation } from '@apollo/client';
 import styled from 'styled-components'
-import {GET_POSTS, ADD_COMMENT, loginCompleted} from "../utils"
+import { ADD_COMMENT } from "../utils"
 
 const MyDiv = styled.div`
   font-size: 11px;   
@@ -15,11 +15,11 @@ export default function Post (props) {
 
   const [comments, setComments] = useState(props.value.Comments)
   const [comment, setComment] = useState(null)
-  const [addComment, { data }] = useMutation(ADD_COMMENT)
+  const [addComment] = useMutation(ADD_COMMENT)
 
     return (  
       <MyDiv>                                                     
-        <img src={ props.value.photoPath} style={{width: "550px", padding:"1px 1px"}} />
+        <img src={ props.value.photoPath } alt="" style={{width: "550px", padding:"1px 1px"}} />
         <p> { `${props.value.user.userName}: ${props.value.caption}`} </p>
         <p> { comments[0] ? "Comments:":null} </p>
         <div> { comments[0] ?
