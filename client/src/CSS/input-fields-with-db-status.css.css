@@ -1,0 +1,91 @@
+/* .signup-field__input {
+  font-size: 12px;
+  height: 26px;
+  color: rgb(38,38,38);
+  width: 218.8px;
+  border:none;
+  background-color: transparent;
+  position: relative;
+  left:9px;
+  top: -8px;
+  outline-width: 0;
+}
+
+.signupBox__inputText--active {
+  top: -1px;
+}
+
+.signupBox__passwordShowContainer {
+  flex-direction: row;
+  height: 19.55px;
+}
+
+.signup-field__container { 
+  position: relative;
+  justify-content: flex-end;
+  height: 36px;
+  width: 258.8px;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 3px;
+  background-color: rgb(250,250,250);
+  color: rgba(38,38,38);
+  box-sizing: border-box;
+  display:flex;
+  align-items: flex-start;
+  width: 258.8px;
+}
+
+.signup-field__containerhover {
+  border: 1px solid rgb(150, 150, 150);
+  cursor: text;
+}
+
+.signup-field__label {
+  color: rgba(142,142,142);
+  position: relative;
+  height: 22px;
+  top: 8px;
+  left:9px;
+  font-size: 13px;
+  align-self: flex-start
+}
+.signup-field__label--inactive {
+  transition: font-size .1s ease-out, top .1s ease-out;
+  top: 8px;
+  left:9px;
+  font-size: 13px;
+}
+
+.signup-field__label--active {
+  transition: font-size .1s ease-in, top .1s ease-in;
+  top:0px;
+  left:9px;
+  font-size:9px;
+  
+}
+
+.signupBox__statusImage {
+  visibility: hidden;
+  position: absolute;
+  left: 224px;
+  width: 22px;
+  height: auto;
+  top: 7px;
+  z-index: 6;
+}
+
+
+.inuse {visibility: visible; filter: contrast(10%) sepia(100%) saturate(10000%) hue-rotate(0deg);}
+.available  {visibility: visible;filter: contrast(10%) sepia(20%) saturate(2000%) hue-rotate(60deg);}
+.tooshort  {visibility: visible;filter: contrast(10%) sepia(20%) saturate(10%) hue-rotate(60deg);}
+
+.signupBox__statusImageTextLabel {
+  visibility: hidden;
+  position: absolute;
+  left: 210px;
+  font-size: 8px;
+  top: 27px;
+  font-weight: 700;
+  width:50px;
+  text-align: center;
+} */

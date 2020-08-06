@@ -38,9 +38,7 @@ const RootMutation = new GraphQLObjectType({
       },
       resolve:  async (parentValue, args, req) => {       
         return await addComment(req.user.dataValues.id,args.postId,args.comment) 
-        // return await addComment(1,args.postId,args.comment) 
       }
-
     }
 }
 })

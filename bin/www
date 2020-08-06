@@ -1,15 +1,36 @@
 #!/usr/bin/env node
-
-const { port } = require('../config');
-
 const app = require('../app');
-const db = require('../db/models');
+
+const http = require('http')
+const server = http.createServer(app)
+const io = require("socket.io")(server, { path: '/ws'})
+// const io = require("socket.io")(server)
+
+const { graphqlHTTP } = require('express-graphql')
+const graphql = require("graphql")
+const { GraphQLSchema } = graphql
+const { port } = require('../config')
+
+const { query } = require("../schemas/queries")
+const { mutation } = require("../schemas/mutations")
+const db = require("../db/models")
+
+io.on('connection', socket => {
+  socket.on('message', ({ name, message }) => {
+    console.log("message: ", message)
+    io.emit('message', { name, message })
+  })
+})
+
+const schema = new GraphQLSchema({ query, mutation })
+app.use( '/', graphqlHTTP({ schema: schema, graphiql: true }) )
 
 // Check the database connection before starting the app.
 db.sequelize.authenticate()
   .then(() => {
     console.log('Database connection success! Sequelize is ready to use...');    
-    app.listen(port, () => console.log(`Listening on port ${port}...`));
+    server.listen(port, () => console.log(`Listening on port ${port}...`));
+  
   })
   .catch((err) => {
     console.log('Database connection failure.');
