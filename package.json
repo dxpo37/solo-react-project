@@ -5,7 +5,6 @@
   "main": "web.js",
   
   "scripts": {
-
     "dev": "dotenv nodemon ./bin/www",
     "heroku-postbuild": "npm install --prefix client && npm run build --prefix client && npm run db:redo",
     "migration:generate": "sequelize-cli migration:generate",
