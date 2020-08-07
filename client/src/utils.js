@@ -1,6 +1,6 @@
 import {  gql } from '@apollo/client';
 
-export const loginCompleted = (history) =>{
+export const loginCompleted = (history, data) =>{
   localStorage.token = data.login.token
   history.push("/home")
 }
@@ -20,9 +20,9 @@ export const GET_POSTS = gql`
     }
   }`
 
-  export const ADD_COMMENT = gql`
+export const ADD_COMMENT = gql`
   mutation Comment($postId: Int!, $comment: String!){
     addComment(postId: $postId, comment:$comment) {
       id
     }
-    }`
+  }`
