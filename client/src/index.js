@@ -1,27 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router,  Switch,  Route} from "react-router-dom";
-import App from './App';
-import Home from './Components/Home';
-
-
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter as Router,  Switch,  Route} from "react-router-dom"
+import App from './App'
+import Home from './Components/Home'
 import {createStore} from 'redux'
-import allReducers from "./Reducers/allReducers"
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {Provider} from "react-redux"
+import allReducers from "./Reducers/allReducers"
 
-import { createHttpLink,  ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+import { createHttpLink,  ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
+import { setContext } from '@apollo/client/link/context'
 //GLOBAL STORE
 const store = createStore(allReducers, composeWithDevTools())
-
-let url
-process.env.NODE_ENV==="development"? url="http://localhost:6777/gql" : url="https://solo-react-project.herokuapp.com/gql"
-
-const httpLink = createHttpLink({
-  uri: url,
-});
-
+const httpLink = createHttpLink({uri: "/gql"})
+//heroku
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -39,7 +31,6 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 })
-
 
 ReactDOM.render(
   <Provider store={store}>

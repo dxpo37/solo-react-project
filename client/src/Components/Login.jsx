@@ -19,7 +19,11 @@ export default function Login () {
   const history = useHistory()
 
   const [getToken, { data }] = useLazyQuery(GET_TOKEN, {
-    onCompleted: ()=>{ localStorage.token = data.login.token;  history.push("/home")},
+    onCompleted: ()=>{ 
+      localStorage.token = data.login.token; 
+      // window.location.href= "http://localhost:6777/home"
+      history.push("/home")
+    },
     onError: (data) => setError("Invalid Credentials")
   })
 

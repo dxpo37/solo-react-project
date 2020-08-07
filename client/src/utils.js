@@ -1,5 +1,7 @@
 import { gql } from '@apollo/client';
 
+export const API_URL = (process.env.NODE_ENV==="development") ? "http://localhost:6777" : "https://solo-react-project.herokuapp.com"
+
 export const GET_TOKEN = gql`
 query Token ($userName: String!, $password: String!) {
   login(userName: $userName, password: $password) {
