@@ -1,17 +1,17 @@
 import React, { useState} from 'react'
 import {GET_TOKEN, loginCompleted} from "../utils"
 import styled from "styled-components"
-import { useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client'
 
 const Center = styled.div`
-display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   min-height: 100vh;`
 
-export default function Login () {
+export default function Login() {
   const [username, setUsername] = useState(null)
   const [password, setPassword] = useState(null)
   const [error, setError] = useState(null)

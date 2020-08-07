@@ -45,10 +45,10 @@ ReactDOM.render(
   <Provider store={store}>
     <ApolloProvider client={client}>
       <Router>
-      <Switch>
-        <Route exact path="/"> <App/> </Route>
-        <Route exact path="/home"> <Home/> </Route>
-      </Switch>
+        <Switch>
+          <Route exact path="/"> <App/> </Route>
+          <Route exact path="/home"> <Home/> </Route>
+        </Switch>
       </Router>
     </ApolloProvider>
   </Provider>,
