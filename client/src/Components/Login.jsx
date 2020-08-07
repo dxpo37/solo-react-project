@@ -1,4 +1,5 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
+import {useHistory} from "react-router-dom"
 import {GET_TOKEN, loginCompleted} from "../utils"
 import styled from "styled-components"
 import { useLazyQuery } from '@apollo/client'
@@ -14,10 +15,11 @@ const Center = styled.div`
 export default function Login() {
   const [username, setUsername] = useState(null)
   const [password, setPassword] = useState(null)
+  const history = useHistory("/");
   const [error, setError] = useState(null)
 
   const [getToken] = useLazyQuery(GET_TOKEN, {
-    onCompleted: loginCompleted,
+    onCompleted: loginCompleted(history, data),
     onError: (data) => setError("Invalid Credentials")
   })
 

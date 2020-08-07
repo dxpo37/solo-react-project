@@ -1,11 +1,8 @@
 import {  gql } from '@apollo/client';
 
-export const loginCompleted = (data) =>{
-  let url
-  process.env.NODE_ENV==="development" ? url="/home" : url="/home"
-
-  window.location.href = url
+export const loginCompleted = (history) =>{
   localStorage.token = data.login.token
+  history.push("/home")
 }
 
 export const GET_TOKEN = gql`
