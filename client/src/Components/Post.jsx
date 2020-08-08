@@ -1,6 +1,7 @@
 import React, {  useState } from 'react'
 import { useMutation } from '@apollo/client';
 import styled from 'styled-components'
+import {useSelector} from 'react-redux'
 import { ADD_COMMENT } from "../utils"
 
 const MyDiv = styled.div`
@@ -16,7 +17,7 @@ export default function Post (props) {
   const [comments, setComments] = useState(props.value.Comments)
   const [comment, setComment] = useState(null)
   const [addComment] = useMutation(ADD_COMMENT)
-
+  const currentUser = useSelector(state => state.userReducer.user)
     return (  
       <MyDiv>                                                     
         <img src={ props.value.photoPath } alt="" style={{width: "550px", padding:"1px 1px"}} />
@@ -28,8 +29,7 @@ export default function Post (props) {
         <input onChange={ e => setComment( e.target.value ) } type="text" placeholder="comment" style={{width: "400px"}}/>
         <input type="button" value="Comment" onClick={ () => {           
             addComment({ variables: {postId:props.value.id, comment:comment}})
-            setComments( [ ...comments, {User: {userName:"deepak"} , comment:comment } ] )
-
+            setComments( [ ...comments, {User: {userName:currentUser.userName} , comment:comment } ] )
           }}         
           style={{width: "100px"}} />                                                                 
       </MyDiv>

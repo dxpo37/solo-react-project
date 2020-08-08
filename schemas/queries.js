@@ -14,7 +14,8 @@ const RootQuery = new GraphQLObjectType({
         password: { type: GraphQLNonNull(GraphQLString) },
       },
       resolve:  async (parentValue, args, req) => {       
-        return await getLogin(args.userName,args.password) 
+        console.log(req.user)
+        return await getLogin(args.userName,args.password, req.user) 
       }
     },
 

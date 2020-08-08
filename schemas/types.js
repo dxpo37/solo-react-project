@@ -3,11 +3,16 @@ const {getUser} = require("../utils/utils")
 
 const LoginType = new GraphQLObjectType(
   {
-    name: "Login",
+    name: "gqlLogin",
     type: "Query",
     fields: {
-      id: {type: GraphQLInt},
       token: { type: GraphQLString },
+      id: {type: GraphQLInt},
+      userName:       { type: GraphQLString },
+      email:          { type: GraphQLString },
+      firstName:      { type: GraphQLString },
+      lastName:       { type: GraphQLString },
+      profilePicPath: { type: GraphQLString }
     }
   })
 

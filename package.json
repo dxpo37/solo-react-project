@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "web.js",
-  
   "scripts": {
-
-		"heroku-postbuild": "npm install --prefix client && npm run build --prefix client && npm run db:redo",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client && npm run db:redo",
     "migration:generate": "sequelize-cli migration:generate",
     "model:generate": "sequelize-cli model:generate",
     "seed:generate": "sequelize-cli seed:generate",
@@ -14,7 +12,6 @@
     "start:development": "nodemon -r dotenv/config ./bin/www",
     "start:production": "node ./bin/www"
   },
-
   "engines": {
     "node": "12.x"
   },

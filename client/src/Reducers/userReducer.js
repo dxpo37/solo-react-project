@@ -1,7 +1,7 @@
-const userReducer = (state={username:"deepak"}, action) => {
+const userReducer = (state={user:{userName:"unknown"}}, action) => {
   switch(action.type){
-    case 'LIKE_INCREMENT': return state
-    case 'LIKE_DECREMENT': return state
+    case 'LOGGED': return {...state, user: action.user}
+    case 'NOT_LOGGED': return state
     default: return state
   }
 }

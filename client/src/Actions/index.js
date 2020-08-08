@@ -1,0 +1,1 @@
+export const setUser = (user) => {return {type: "LOGGED", user:user}}
