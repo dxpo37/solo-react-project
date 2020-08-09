@@ -1,11 +1,11 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import App from "./App"
+import App from "./Components/App.jsx"
 import { createStore } from "redux"
 import { composeWithDevTools } from "redux-devtools-extension"
 import { Provider } from "react-redux"
 import allReducers from "./Reducers/allReducers"
-import {API_URL} from "./utils"
+import {API_URL} from "./Utils/utils"
 
 import { createHttpLink,  ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'

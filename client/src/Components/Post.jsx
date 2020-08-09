@@ -2,7 +2,7 @@ import React, {  useState } from 'react'
 import { useMutation } from '@apollo/client';
 import styled from 'styled-components'
 import {useSelector} from 'react-redux'
-import { ADD_COMMENT } from "../utils"
+import { ADD_COMMENT } from "../Utils/utils"
 
 const MyDiv = styled.div`
   font-size: 11px;   
@@ -30,6 +30,7 @@ export default function Post (props) {
         <input type="button" value="Comment" onClick={ () => {           
             addComment({ variables: {postId:props.value.id, comment:comment}})
             setComments( [ ...comments, {User: {userName:currentUser.userName} , comment:comment } ] )
+            Array.from(document.querySelectorAll("input")).forEach(input => (input.value = ""))
           }}         
           style={{width: "100px"}} />                                                                 
       </MyDiv>

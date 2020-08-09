@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-
+import {useDispatch} from 'react-redux'
+import {logOutUser} from '../Actions/index'
 const MyDiv = styled.div`
 // padding-bottom:400px;
 overflow: hidden;
@@ -19,10 +20,17 @@ left:9px;
 -width: 0;`
 
 export default function Nav (props) {
+  const dispatch = useDispatch()
+  const logoutUserHandler = () => {
+    dispatch(logOutUser())
+    localStorage.removeItem("token")
+    window.location.reload(false)
+  }
     return (  
       <MyDiv>
       <h1 style={{"paddingLeft":"100px"}}>Logo</h1> 
       <h1 style={{"paddingRight":"100px"}}>Links</h1> 
+      <button onClick={logoutUserHandler}>logout</button>
       </MyDiv>
         )
         }                                              

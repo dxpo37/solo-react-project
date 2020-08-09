@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { GET_USER } from '../utils'
+import { GET_USER } from '../Utils/utils'
 import styled from 'styled-components'
 import { useLazyQuery } from '@apollo/client'
 import {useDispatch} from 'react-redux'
-import {setUser} from '../Actions/index'
+import {logInUser} from '../Actions/index'
 
 const Center = styled.div`
 display: flex;
@@ -22,8 +22,8 @@ export default function Login () {
   const [getUser, { data }] = useLazyQuery(GET_USER, {
     onCompleted: ()=>{ 
       localStorage.token = data.login.token
-      dispatch(setUser(data.login))
-      window.location.reload(false);
+      dispatch(logInUser(data.login))
+      window.location.reload(false)
     },
     onError: (data) => setError(data.message)
   })

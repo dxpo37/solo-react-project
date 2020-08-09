@@ -1,1 +1,2 @@
-export const setUser = (user) => {return {type: "LOGGED", user:user}}
+export const logInUser = (user) => {return {type: "LOG_IN", user:user}}
+export const logOutUser = () => {return {type: "LOG_OUT"}}

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const app = require('../app');
+const app = require('./app');
 const http = require('http')
 const server = http.createServer(app)
 const io = require("socket.io")(server, { path: '/ws'})
@@ -14,8 +14,8 @@ const { mutation } = require("../schemas/mutations")
 const db = require("../db/models")
 
 io.on('connection', socket => {
-  socket.on('message', ({ name, message }) => {
-     io.emit('message', { name, message })
+  socket.on('message', ({ user, message }) => {
+     io.emit('message', { user, message })
   })
 })
 
