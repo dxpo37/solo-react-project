@@ -4,7 +4,7 @@ import React from 'react'
 import S3 from 'react-aws-s3'
 // import { InboxOutlined } from '@ant-design/icons';
 import {envVars} from '../Config/index'
-
+process.env.DEEPAK = "IHATETHIS"
 console.log(process.env)
 console.log(envVars.awsConfig)
 
