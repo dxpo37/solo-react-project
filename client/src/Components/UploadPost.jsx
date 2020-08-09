@@ -11,6 +11,8 @@ export default function UploadPost() {
     if(!envVars.awsConfig.secretAccessKey){
       const response = await fetch("/aws")
       const awsConfig = await response.json()
+      console.log("No Token---> but....", awsConfig )
+      console.log("No Token---> but....KEYYYY", awsConfig.secretAccessKey )
     }
     else { const awsConfig = envVars.awsConfig}
     console.log("deepak--->" , aws)
