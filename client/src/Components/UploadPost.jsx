@@ -10,8 +10,9 @@ export default function UploadPost() {
   const uploadHandler = async (e) => {
     let awsConfig
     if(!envVars.awsConfig.secretAccessKey){
-      const response = await fetch("/aws")
-      awsConfig = await response.json()
+      const resJSON = await fetch("/aws")
+      const resObj = await resJSON.json()
+      awsConfig = resObj.aws
       console.log("No Token---> but....", awsConfig )
       console.log("No Token---> but....KEYYYY", awsConfig.secretAccessKey )
     }
