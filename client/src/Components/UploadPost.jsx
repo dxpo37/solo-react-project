@@ -4,20 +4,19 @@ import React from 'react'
 import S3 from 'react-aws-s3'
 // import { InboxOutlined } from '@ant-design/icons';
 import {envVars} from '../Config/index'
-process.env.DEEPAK = "IHATETHIS"
-console.log(process.env)
-console.log(envVars.awsConfig)
-
 
 export default function UploadPost() {
 
   const uploadHandler = async (e) => {
-    let response = await fetch("/aws")
-    let aws = await response.json()
+    if(!envVars.awsConfig.secretAccessKey){
+      const response = await fetch("/aws")
+      const awsConfig = await response.json()
+    }
+    else { const awsConfig = envVars.awsConfig}
     console.log("deepak--->" , aws)
     const file = document.querySelector("[name=fileUpload]").files[0]
     let postUrl
-    const ReactS3Client = new S3(envVars.awsConfig); 
+    const ReactS3Client = new S3(awsConfig); 
     try{ postUrl = await ReactS3Client.uploadFile(file, file.name)}
     catch{ console.log("ZZZZZZZZZZZZZZ")}
   }
