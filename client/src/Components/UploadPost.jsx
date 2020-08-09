@@ -12,8 +12,9 @@ console.log(envVars.awsConfig)
 export default function UploadPost() {
 
   const uploadHandler = async (e) => {
-    let x = await fetch("/aws")
-    console.log("deepak--->" , x)
+    let response = await fetch("/aws")
+    let aws = await response.json()
+    console.log("deepak--->" , aws)
     const file = document.querySelector("[name=fileUpload]").files[0]
     let postUrl
     const ReactS3Client = new S3(envVars.awsConfig); 
