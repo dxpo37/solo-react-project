@@ -13,7 +13,7 @@ const AWS_URL = 'https://pikagram-pics1.s3-us-east-2.amazonaws.com/'
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
   app.get(['/','/home'], (req, res) => { res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')) })
-  app.get("/aws", res.json(process.env))
+  app.get("/aws", (req, res) => {res.json(process.env)})
 }
 
 app.use(morgan("dev"))
