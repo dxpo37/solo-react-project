@@ -1,9 +1,6 @@
 import React from 'react'
 import Login from './Login'
 import Home from './Home'
-import '../../node_modules/bootstrap/dist/css/bootstrap.css'
-import './index.css'
-// import url("https://cdn.jsdelivr.net/npm/bootstrap-themes@^1.0.2/dist/backstay/index.min.css")
 import { GET_USER } from '../Utils/utils'
 import {logInUser} from '../Actions/index'
 import { useQuery } from '@apollo/client'

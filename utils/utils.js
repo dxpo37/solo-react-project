@@ -3,6 +3,7 @@ const { getUserToken, requireAuth } = require("../utils/auth")
 const { Op } = require('sequelize')
 
 const CLIENT_URL = (process.env.NODE_ENV==='development') ? "http://localhost:3000" : "https://solo-react-project.herokuapp.com/";
+const AWS_URL = 'https://pikagram-pics1.s3-us-east-2.amazonaws.com/'
 
 async function getUser(userId) { return await db.User.findByPk(userId, { attributes: ['id', 'firstName', 'lastName', 'userName', 'email', 'bio', 'profilePicPath', 'age', 'gender'] })}
 
@@ -14,8 +15,6 @@ async function getLogin(username, password, currentUser) {
   const token = getUserToken(user);
   user.token = token
   return user
-
-
 
 }
 

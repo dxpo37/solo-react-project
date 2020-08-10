@@ -27,13 +27,15 @@ export default function Login () {
     },
     onError: (data) => setError(data.message)
   })
-
+  const url = process.env.NODE_ENV==='development'?"http://localhost:6777":""
+  const handleGoogleLogin = async () => {const res = await fetch(url+"/auth/google"); console.log("fsdafas")}
   return (
     <Center>
       { error ? <p> {error} </p> : null }
       <input onChange={e=>setUsername(e.target.value)} type="text" placeholder="username" />
       <input onChange={e=>setPassword(e.target.value)} type="text" placeholder="password" />
       <input type="button" value="Login" onClick={ () => { getUser({ variables: {userName:username, password:password}}) }}/>
+      <input type="button" value="Google Login" onClick={handleGoogleLogin}/>
     </Center>
   );
 }

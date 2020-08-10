@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 require('dotenv').config()
-console.log(process.env)
+
 const app = require('./app');
 const http = require('http')
 const server = http.createServer(app)
@@ -34,3 +34,8 @@ db.sequelize.authenticate()
     console.log('Database connection failure.')
     console.error(err)
   })
+
+
+
+
+
