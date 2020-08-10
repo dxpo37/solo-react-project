@@ -11,7 +11,8 @@ const cookieSession = require("cookie-session")
 const passportCookiesConfig = require('../config/index').passportCookiesConfig
 const aws = {bucketName: process.env.AWS_BUCKET_NAME,secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,accessKeyId: process.env.AWS_ACCESS_KEY_ID,region: process.env.AWS_REGION }
 
-app.use( cors( { origin: [CLIENT_URL, AWS_URL], credentials: true } ) )
+// app.use( cors( { origin: [CLIENT_URL, AWS_URL], credentials: true } ) )
+app.use( cors( { origin: "*", credentials: true } ) )
 app.use(cookieSession({ maxAge: passportCookiesConfig.expiresIn, keys:[passportCookiesConfig.secret]}))
 app.use(requireAuth)
 app.use(morgan("dev"))
