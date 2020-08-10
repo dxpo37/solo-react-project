@@ -11,7 +11,10 @@ export default function  App() {
   const dispatch = useDispatch()
   const { data }= useQuery(GET_USER, {
     variables: {userName:"n/a", password:"n/a"},
-    onCompleted: () =>  dispatch(logInUser(data.login))
+    onCompleted: () =>  {
+      console.log("gfd")
+      dispatch(logInUser(data.login))
+    }
   })
 
 return (

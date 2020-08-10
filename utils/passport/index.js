@@ -2,20 +2,21 @@ const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const chalk = require("chalk")
 const googleCredentials = {  clientID: process.env.GOOGLE_CLIENT_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET, callbackURL: '/auth/google/callback'}
+let user = {};
 
 passport.serializeUser((user, cb) => { cb(null, user) })
 passport.deserializeUser((user, cb) => { cb(null, user) })
 const googleStrategy = new GoogleStrategy(googleCredentials,
 
 (accessToken, refreshToken, profile, done) => {
-  // console.log(chalk.red("accessToken------->",JSON.stringify(profile)))
-  // console.log(chalk.red("accessToken------->", accessToken))
-  // console.log(chalk.green("refreshToken------->", refreshToken))
-  // console.log(chalk.blue("firstName------->", profile.firstName))
-  // console.log(chalk.blue("lastName------->", profile.lastName))
-  // console.log(chalk.blue("email------->", profile.id))
+  console.log(chalk.red("accessToken------->",JSON.stringify(profile)))
+  console.log(chalk.red("accessToken------->", accessToken))
+  console.log(chalk.green("refreshToken------->", refreshToken))
+  console.log(chalk.blue("firstName------->", profile.firstName))
+  console.log(chalk.blue("lastName------->", profile.lastName))
+  console.log(chalk.blue("email------->", profile.id))
 
-  done(null, profile)
+  done(null, profile, { message: 'Incorrect password.' })
 
 
 

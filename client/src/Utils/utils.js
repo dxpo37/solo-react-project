@@ -32,3 +32,10 @@ export const ADD_COMMENT = gql`
       id
     }
   }`
+
+  export const MAKE_POST = gql`
+  mutation Post ($userId: Int!, $caption: String!, $photoPath: String!) {
+    makePost(userId: $userId, caption:$caption, photoPath:$photoPath) {
+      allPosts
+    }
+  }`

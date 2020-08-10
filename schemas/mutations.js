@@ -1,13 +1,12 @@
 const db = require("../db/models")
 const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLBoolean, GraphQLInt } = require("graphql")
-const { UserType, CommentType } = require("./types")
-const {getPosts, getUser, getLogin, addComment} = require("../utils/utils")
+const { UserType, CommentType, PostType } = require("./types")
+const {getPosts, getUser, getLogin, addComment, makePost} = require("../utils/utils")
 
 const RootMutation = new GraphQLObjectType({
   name: "RootMutationType",
   type: "Mutation",
-  fields: {
-       
+  fields: {    
     addUser: {
       type: UserType,
       args: {
@@ -38,6 +37,19 @@ const RootMutation = new GraphQLObjectType({
       },
       resolve:  async (parentValue, args, req) => {       
         return await addComment(req.user.dataValues.id,args.postId,args.comment) 
+      }
+    },
+
+    makePost: {
+      type: PostType,
+      args: {
+        userId: {type: GraphQLInt},
+        caption: { type: GraphQLString},
+        photoPath: { type: GraphQLString},
+      },
+      resolve:  async (parentValue, args, req) => {   
+        console.log("------>", req.user.dataValues.id)    
+        return await makePost(req.user.dataValues.id,args.caption,args.photoPath) 
       }
     }
 }

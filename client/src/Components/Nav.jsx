@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import {useDispatch} from 'react-redux'
 import {logOutUser} from '../Actions/index'
+import UploadPost from './UploadPost'
+
 const MyDiv = styled.div`
-// padding-bottom:400px;
 overflow: hidden;
 width:100%;
 position: fixed;
@@ -31,6 +32,7 @@ export default function Nav (props) {
       <h1 style={{"paddingLeft":"100px"}}>Logo</h1> 
       <h1 style={{"paddingRight":"100px"}}>Links</h1> 
       <button onClick={logoutUserHandler}>logout</button>
+      <UploadPost/>
       </MyDiv>
         )
         }                                              

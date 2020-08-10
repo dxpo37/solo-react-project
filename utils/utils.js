@@ -1,21 +1,18 @@
 const db = require("../db/models")
-const { getUserToken, requireAuth } = require("../utils/auth")
 const { Op } = require('sequelize')
-
 const CLIENT_URL = (process.env.NODE_ENV==='development') ? "http://localhost:3000" : "https://solo-react-project.herokuapp.com/";
 const AWS_URL = 'https://pikagram-pics1.s3-us-east-2.amazonaws.com/'
 
 async function getUser(userId) { return await db.User.findByPk(userId, { attributes: ['id', 'firstName', 'lastName', 'userName', 'email', 'bio', 'profilePicPath', 'age', 'gender'] })}
 
 async function getLogin(username, password, currentUser) {
-
+  const { getUserToken } = require('./auth')
   if(currentUser) return currentUser
   const user = await db.User.findOne({where: {[Op.or]: [{ email: username}, { userName: username }]}})
   if (!user || !user.validatePassword(password)) return new Error("??incorrect credential sent to server??")        
-  const token = getUserToken(user);
+  const token = getUserToken(user)
   user.token = token
   return user
-
 }
 
 async function addComment(userId, postId, comment ){
@@ -29,6 +26,20 @@ async function addComment(userId, postId, comment ){
   } 
   else return new Error("could not post comment")
 }
+
+
+async function makePost(userId, caption, photoPath ){
+  if (userId) {
+    const postComment = await db.Post.create({
+      userId: userId,
+      caption: caption,
+      photoPath:photoPath
+    })
+    return postComment
+  } 
+  else return new Error("could not post comment")
+}
+
 
 async function getPosts(userId) {  
   const followerPosts = await db.User.findByPk(userId, {
@@ -106,4 +117,4 @@ let string = JSON.stringify(sortedPosts)
 return {allPosts: string}
 }
 
-module.exports = { getUser, getPosts, getLogin, addComment, CLIENT_URL }
+module.exports = { makePost, getUser, getPosts, getLogin, addComment, CLIENT_URL, AWS_URL  }

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import {GET_POSTS} from "../Utils/utils"
 import Post from "./Post"
 import Nav from "./Nav"
-import UploadPost from './UploadPost'
+
 import ChatWindow from "./ChatWindow"
 
 const Center = styled.div`
@@ -30,7 +30,7 @@ export default function Home () {
             .map((ele,i)=> <Post key={i} value={ele}/> )
         } 
       </Center>
-      <UploadPost/>
+      
       <ChatWindow/>
       </>
     )

@@ -5,11 +5,12 @@ const bearerToken = require("express-bearer-token");
 const {getUser} = require("./utils");
 const { secret, expiresIn } = jwtConfig;
 
-const getUserToken = (user) => {
-  const userDataForToken = { id: user.id, email: user.email } 
-  const token = jwt.sign( { data: userDataForToken }, secret, { expiresIn: parseInt(expiresIn, 10) } )
+const getUserToken= (user) => {
+  const userDataForToken = { id: user.id, email: user.email }
+  const token = jwt.sign({ data: userDataForToken }, secret, { expiresIn: parseInt(expiresIn, 10) } )
   return token
 }
+
 
 const restoreUser = (req, res, next) => {  
   const { token } = req
@@ -26,25 +27,27 @@ const restoreUser = (req, res, next) => {
 }
 
 const restoreOAuthUser = async (req, res, next) => {  
-  const email = req.user.emails[0].value
+  const  {sW:firstName, sU:lastName, yu:email } = req.body.Ot
+  console.log(firstName, lastName , email)
   let user = await User.findAll({where: { email }})
-  const token = getUserToken(user)
+
+  const token = getUserToken(user[0].dataValues)
   if(user[0]) res.json({token})
   else{
-    const user = await User.create({
-      firstName : req.user.name.givenName,
-      lastName : req.user.name.familyName,
-      userName : req.user.name.givenName,
+    let user = await User.create({
+      firstName,
+      lastName,
+      userName: firstName,
       email,
       hashedPassword : "none"
     })
-    const token = getUserToken(user)
+    const token = getUserToken(user[0].dataValues)
+    console.log(token)
     res.json({token})
   }
+
 }
-
-
 
 const requireAuth = [bearerToken(), restoreUser];
 
-module.exports = { getUserToken, requireAuth , restoreOAuthUser};
+module.exports = {getUserToken , requireAuth, restoreOAuthUser}
