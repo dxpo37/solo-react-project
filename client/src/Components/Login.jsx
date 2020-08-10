@@ -29,6 +29,7 @@ export default function Login () {
 
   
   const responseGoogle = async (response) => {
+    console.log(response)
     const options = {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(response)}
     let serverRes = await fetch(`${API_URL}/login/google`, options)
     let serverData = await serverRes.json()

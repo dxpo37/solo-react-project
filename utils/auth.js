@@ -29,11 +29,11 @@ const restoreUser = (req, res, next) => {
 const restoreOAuthUser = async (req, res, next) => {  
   console.log(req.body)
   const  {sW:firstName, sU:lastName, yu:email } = req.body.Ot
-  console.log(firstName, lastName , email)
+ 
   let user = await User.findAll({where: { email }})
 
-  const token = getUserToken(user[0].dataValues)
-  if(user[0]) res.json({token})
+  
+  if(user[0]) { const token = getUserToken(user[0].dataValues); res.json({token}) }
   else{
     let user = await User.create({
       firstName,
